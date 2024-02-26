@@ -1,0 +1,375 @@
+@import "../../styles/config.scss";
+
+.chatWrapper {
+  display: flex;
+  align-items: stretch;
+  flex-direction: row-reverse;
+  gap: 30px;
+  height: 100%;
+  padding: 60px 40px 40px;
+
+  &:global(.showHistory) {
+    gap: 0;
+  }
+  @media (max-width:476px) {
+    padding: 0;
+  }
+
+  .chatPanelOuter {
+    position: relative;
+    // background-color: #d4d4d8;
+    background: linear-gradient(to bottom right, #4e54c8, #8f94fb);
+    border-radius: 8px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+      rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    // box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    .menu {
+      position: absolute;
+      border: 2px solid $white;
+      top: -22px;
+      right: -22px;
+      @media (max-width:476px) {
+        top: 10px;
+        right: 10px;
+      }
+    }
+
+    .header {
+      padding: 15px 20px;
+      color: $white;
+      font-size: 20px;
+      font-weight: $f_semibold;
+      @media (max-width:476px) {
+        text-align: center;
+        font-size: 18px;
+      }
+      @media (max-width:380px) {
+        font-size: 16px;
+      }
+    }
+
+    .body {
+      padding: 20px;
+      overflow: auto;
+      background-color: #f5f6ff;
+      border-radius: 12px;
+      flex: 1;
+      margin: 0 10px;
+
+      &::-webkit-scrollbar{
+        display: none;
+      }
+
+      .user {
+        display: flex;
+        justify-content: end;
+        align-items: end;
+        margin-bottom: 15px;
+        flex-direction: column;
+        .msgBox {
+          max-width: 70%;
+          background-color: #6f7078;
+          border-radius: 10px 10px 0 10px;
+          padding: 10px 15px;
+          display: flex;
+          justify-content: end;
+          gap: 8px;
+
+          .profilePic {
+            min-width: 30px;
+            height: 30px;
+            border-radius: 50%;
+          }
+          .userName {
+            position: relative;
+            top: 3px;
+            margin-bottom: 5px;
+            color: $white;
+            font-size: 12px;
+          }
+
+          .userMsg {
+            font-size: 12px;
+            color: $white;
+            @media (max-width: 768px) {
+              font-size: 11px;
+            }
+          }
+        }
+      }
+
+      .chatbot {
+        .msgBox {
+          position: relative;
+          max-width: 70%;
+          background-color: #6f7078;
+          border-radius: 10px 10px 10px 0;
+          padding: 10px 15px;
+          display: flex;
+          justify-content: start;
+          gap: 0px;
+          margin-bottom: 35px;
+
+          .profilePic {
+            min-width: 30px;
+            height: 30px;
+            border-radius: 50%;
+          }
+          .botName {
+            position: relative;
+            top: 3px;
+            margin-bottom: 5px;
+            color: $white;
+            font-size: 12px;
+          }
+
+          .botMsg {
+            font-size: 12px;
+            color: $white;
+            @media (max-width: 768px) {
+              font-size: 11px;
+            }
+          }
+        }
+        .repliesOuter{
+          position: absolute;
+          right: 10px;
+          bottom: -33px;
+          
+          .replies{
+            // box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+            
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+            padding: 2px 12px;
+            background-color: $white;
+            display: flex;
+            border-radius: 30px;
+            align-items: center;
+            gap: 7px;
+          }
+        }
+      }
+    }
+
+    .footer {
+      display: flex;
+      padding: 15px 20px;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      @media (max-width: 768px) {
+        padding: 15px;
+      }
+      :global(.send-btn) {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      input[type="text"] {
+        min-width: 500px;
+        @media (max-width: 768px) {
+          min-width: 100%;
+          flex: 1;
+        }
+      }
+    }
+  }
+}
+
+
+.startChat{
+  position: relative;
+  top: 80px;
+  h1{
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  h6{
+    margin-bottom: 10px;
+  }
+  p{
+    font-size: 10px;
+    margin-bottom: 20px;
+  }
+}
+
+
+.forward{
+  :global(.popover-body){
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+    width: 150px;
+    a{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: $black;
+
+      &:hover{
+        color: $primary;
+      }
+    }
+  }
+}
+
+//Responsive
+.chatListOffcanvas {
+  width: 300px !important;
+  background: $primary;
+  border-radius: 8px;
+  border: 0;
+  top: 30px !important;
+  bottom: 30px;
+
+  &:global(.show) {
+    right: 30px !important;
+    transition: all 0.3s ease-in-out;
+    .chatListOuter {
+      box-shadow: none;
+      height: 100%;
+      &:global(.hide) {
+        width: auto !important;
+        transition: all 0.3s ease-in-out;
+
+        overflow: visible !important ;
+      }
+    }
+  }
+
+  :global(.offcanvas-header) {
+    position: relative;
+    :global(.btn-close) {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      z-index: 10;
+      border: 2px solid white;
+      font-size: 12px;
+      background-image: url("../../public//images/cross.svg");
+      background-position: center center;
+      background-size: 20px;
+      background-color: #fff;
+    }
+  }
+  :global(.offcanvas-body) {
+    padding: 0;
+    overflow: hidden;
+    flex: 1 !important;
+  }
+
+  .chatListOuter {
+    // background-color: #d4d4d8;
+    background: linear-gradient(to bottom right, #4e54c8, #8f94fb);
+    width: 300px;
+    transition: all 0.3s ease-in-out;
+    border-radius: 8px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+      rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    &:global(.hide) {
+      width: 0 !important;
+      overflow: hidden;
+    }
+
+    .chatListInner {
+      padding: 20px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      white-space: nowrap;
+    }
+
+    .chatList {
+      white-space: nowrap;
+      flex: 1;
+      padding: 10px 10px;
+      background-color: $white;
+      height: 100%;overflow: hidden;
+      background-color: #f5f6ff;
+      border-radius: 12px;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+      .fromStartChat {
+        font-size: 14px;
+        font-weight: $f_medium;
+        margin-bottom: 5px;
+      }
+
+      .chatListItem {
+        // background-color: $white;
+        background-color: #6f7078;
+        color: $white;
+        padding: 5px 10px;
+        border-radius: 30px;
+        display: flex;
+        margin-bottom: 6px;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.13),
+          0 1px 1px 0 rgba(0, 0, 0, 0.11);
+
+        &:hover {
+          .setting {
+            display: block;
+          }
+        }
+
+        .date {
+          font-size: 12px;
+          margin-left: 5px;
+          // color: $font-color;
+          color: $white;
+
+          font-weight: $f_medium;
+        }
+        .firstmsg {
+          font-size: 11px;
+          // color: $font-light;
+          color: $white;
+          max-width: 100px;
+          display: inline-block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-weight: $f_normal;
+        }
+
+        .setting {
+          display: none;
+          :global(.dropdown-toggle) {
+            padding: 0;
+            line-height: 10px;
+            svg {
+              stroke: $white;
+              fill: $white;
+            }
+            &::after {
+              display: none;
+            }
+          }
+          :global(.dropdown-menu) {
+            padding: 2px 0;
+            max-width: 100px;
+            min-width: unset;
+            border-radius: 6px;
+          }
+          :global(.dropdown-item) {
+            border-radius: 6px;
+            padding: 3px 10px;
+            font-size: 13px;
+          }
+        }
+      }
+    }
+  }
+}

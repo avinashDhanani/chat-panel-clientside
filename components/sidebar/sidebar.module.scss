@@ -1,0 +1,131 @@
+@import "../../styles/config.scss";
+
+//SIDEBAR
+.wrapper {
+  height: 100vh;
+  transition: all 0.5s ease-in-out;
+  width: 65px;
+  overflow: hidden;
+  background: $primary;
+
+
+  &.showSidebar {
+    transition: all 0.5s ease-in-out;
+    width: 250px !important;
+    overflow: visible;
+    .customMenu {
+      .toggleButton {
+        right: 0px !important;
+      }
+    }
+  }
+  .site_logo{
+    width: 200px !important;
+    height: 100% !important;
+  }
+  .sidebar {
+    color: #fff;
+    position: relative;
+
+    .navMenu {
+      padding: 30px 20px;
+
+      .navList {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        .navItem {
+          padding: 15px 0;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          color: rgba(255, 255, 255, 0.6);
+
+          &:hover {
+            .navLink {
+              color: $white;
+            }
+            border-color: $white;
+          }
+          &:global(.active) {
+            border-color: $white;
+            .navLink {
+              color: $white;
+            }
+          }
+          .navLink {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            white-space: nowrap;
+            font-size: 18px;
+            font-weight: $f_medium;
+            text-decoration: none;
+
+            .icon {
+              min-width: 30px;
+            }
+          }
+        }
+      }
+    }
+
+    &.active {
+      margin-left: -250px;
+      .custom-menu {
+        margin-right: -50px;
+      }
+    }
+
+    ul {
+      li {
+        font-size: 16px;
+        > ul {
+          margin-left: 10px;
+          li {
+            font-size: 14px;
+          }
+        }
+        a {
+          display: block;
+          color: rgba(255, 255, 255, 0.8);
+
+          &:hover {
+            color: $white;
+          }
+        }
+        &.active {
+          > a {
+            background: transparent;
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Responsive
+
+.navOffcanvas {
+  width: 250px !important;
+  background: $primary;
+
+  :global(.offcanvas-header) {
+    position: relative;
+    :global(.btn-close) {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      z-index: 10;
+      border: 2px solid white;
+      font-size: 12px;
+      background-image: url("../../public//images/cross.svg");
+      background-position: center center;
+      background-size: 20px;
+      background-color: #fff;
+    }
+  }
+  :global(.offcanvas-body) {
+    padding: 0;
+    overflow: hidden;
+  }
+}

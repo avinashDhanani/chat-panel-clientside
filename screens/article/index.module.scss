@@ -1,0 +1,62 @@
+@import '../../styles/config.scss';
+
+.article {
+  padding: 40px 50px;
+
+  @media (max-width:768px) {
+    padding: 30px 15px;
+  }
+  @media (max-width:476px) {
+    padding: 30px 5px;
+  }
+  .header {
+    width: 100%;
+    text-align: center;
+  }
+
+  .entriesLimit {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px; 
+    align-items: center;
+
+    @media (max-width:576px) {
+      font-size: 13px;
+      justify-content: center;
+    }
+  }
+  .filterWrapper{
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: space-between;
+    align-items: center;
+    @media (max-width:768px) {
+      flex-direction: column;
+      align-items: end;
+      gap: 15px;
+    }
+    @media (max-width:576px) {
+      align-items: center;
+    }
+  }
+  .filter {
+    width: 100%;
+    flex: 1;
+    @media (max-width:768px) {
+      align-self: flex-start;
+    }
+    @media (max-width:768px) {
+      align-self: center;
+    }
+  }
+  .thirdMainRow {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+  }
+  .pageSelect{
+    padding: 5px 8px;
+    border-radius: 5px;
+    border-color: $border-color;
+  }
+}

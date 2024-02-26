@@ -1,0 +1,43 @@
+@import "../../styles/config.scss";
+
+// Input
+.commonInput {
+  padding: 10px;
+
+  @media (max-width:576px) {
+    padding: 5px;
+  }
+  
+  &.startIcon {
+    padding-left: 40px;
+  }
+
+  &:global(.endIcon){
+    padding-right: 40px;
+  }
+  &:global(.chat-input){
+    padding-right: 50px;
+  }
+
+  &.roundBorder{
+    border-radius: 30px;
+  }
+}
+
+.tableSearch{
+  min-height: 40px;
+  font-size: 14px;
+  padding: 7px 10px;
+
+  @media (max-width:476px) {
+    min-height: auto;
+    font-size: 13px;
+  }
+}
+
+
+// Label
+.label {
+  font-weight: bold;
+  color: #333333;
+}
