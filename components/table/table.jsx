@@ -28,12 +28,12 @@ export function TableUsageActivity(props) {
 }
 
 export function TableDataRecover(props) {
-  const { tableHeadData, TableBodyData, TableProperty } = props;
+  const { tableHeadData, TableBodyData, TableProperty,onClick } = props;
 
   return (
     <Table responsive className={Styles.tableType1}>
       <TableHead data={tableHeadData} TableProperty={TableProperty} />
-      <TableBodyDataRecover data={TableBodyData} />
+      <TableBodyDataRecover onClick={onClick} data={TableBodyData} />
     </Table>
   );
 }

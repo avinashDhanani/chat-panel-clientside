@@ -63,7 +63,7 @@
   width: 100%;
   box-shadow: 0 0 20px #eee;
   &:hover {
-    background-position: right center; 
+    background-position: right center;
     color: #fff;
     text-decoration: none;
   }
@@ -80,7 +80,7 @@
   border: 0;
 }
 
-.tableIconBtn{
+.tableIconBtn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -88,26 +88,26 @@
   border-radius: 10px;
   min-width: 40px;
   height: 40px;
-  @media (max-width:476px) {
+  @media (max-width: 476px) {
     min-width: 35px;
     height: 35px;
   }
 }
 
-.btn-type1{
+.btn-type1 {
   padding: 8px 20px !important;
   text-align: center;
   transition: 0.5s;
   border-radius: px !important;
   border: 0;
   font-weight: $f_semibold;
-  @media (max-width:476px) {
+  @media (max-width: 476px) {
     font-size: 14px;
     padding: 7px 20px !important;
   }
 }
 
-.chatmsgBtn{
+.chatmsgBtn {
   border: 0;
   background-color: $white;
   border-radius: 50px;
@@ -117,14 +117,71 @@
   display: block;
   color: $font-color;
   transition: all 0.1s ease-in-out;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-  &:hover,&:active{
-    color: $white !important; 
-    background-color: rgb(247 146 38) !important;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  &:hover,
+  &:active {
+    color: $white !important;
+    background-color: $orange !important;
     transform: scaleX(1.02);
   }
 
-  @media (max-width:476px) {
+  @media (max-width: 476px) {
     padding: 8px 13px;
+  }
+}
+
+.draftBtn {
+  min-height: 75px;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  background-color: $white;
+  border: 2px solid $border-dark;
+  border-radius: 10px;
+  @media (max-width:768px) {
+    min-height: auto;
+  }
+  &:hover {
+    border: 2px solid $border-dark;
+    background-color: $white;
+  }
+  &:active {
+    border: 2px solid $border-dark;
+    background-color: $white !important;
+  }
+}
+
+.replyBtn {
+  background-color: $orange;
+  color: $white;
+  font-size: 13px;
+  font-weight: $f_medium;
+  height: 30px;
+  border: 0;
+  padding: 5px 10px;
+  border-radius: 5px;
+  &:hover{
+    background-color: #424242;
+  }
+  &:active{
+    background-color: #424242 !important;
+  }
+}
+
+.sendBtn {
+  background-color: #424242;
+  color: $white;
+  font-size: 12px;
+  font-weight: $f_medium;
+  height: 30px;
+  border: 0;
+  border-radius: 30px;
+  padding: 5px 15px;
+  &:hover{
+    background-color: $orange;
+  }
+  &:active{
+    background-color: $orange !important;
   }
 }

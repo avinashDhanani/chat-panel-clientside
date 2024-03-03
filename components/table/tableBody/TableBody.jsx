@@ -5,8 +5,10 @@ import { TfiSearch } from "react-icons/tfi";
 import { RiDeviceRecoverLine } from "react-icons/ri";
 import Style from "./TableBody.module.scss";
 import Button from "@/components/button";
+import { useRouter } from 'next/navigation';
 
 export default function TableBody(props) {
+  const router = useRouter();  
   return (
     <tbody className={Style.articleTableBody}>
       {props.data.map((item) => {
@@ -40,6 +42,7 @@ export default function TableBody(props) {
 }
 
 export function TableBodyUsageActivity(props) {
+  const router = useRouter();  
   return (
     <tbody className={Style.articleTableBody}>
       {props.data.map((item) => {
@@ -53,7 +56,7 @@ export function TableBodyUsageActivity(props) {
             })}
             <td>
               <div className="d-flex align-items-center justify-content-center">
-                <Button title="Search" moduleClass="tableIconBtn">
+                <Button onClick={() => router.push('/review')} title="Search" moduleClass="tableIconBtn">
                   <TfiSearch size={20} />
                 </Button>
               </div>
@@ -78,7 +81,7 @@ export function TableBodyDataRecover(props) {
             })}
             <td>
               <div className="d-flex align-items-center justify-content-center gap-3">
-                <Button title="Edit" className="d-flex align-items-center gap-2">
+                <Button onClick={props.onClick} title="Edit" className="d-flex align-items-center gap-2">
                   <RiDeviceRecoverLine size={20} />
                   <span>Recover Data</span>
                 </Button>

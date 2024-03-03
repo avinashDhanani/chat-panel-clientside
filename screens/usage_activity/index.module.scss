@@ -6,9 +6,9 @@
   @media (max-width:768px) {
     padding: 30px 15px;
   }
-  @media (max-width:476px) {
-    padding: 30px 5px;
-  }
+  // @media (max-width:476px) {
+  //   padding: 30px 5px;
+  // }
     .header {
       width: 100%;
       text-align: center;
@@ -26,7 +26,7 @@
     }
     .filterWrapper{
       display: flex;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       justify-content: space-between;
       align-items: center;
       @media (max-width:768px) {
@@ -36,6 +36,24 @@
       }
       @media (max-width:576px) {
         align-items: center;
+      }
+    }
+
+    .advancedSearch{
+      margin-bottom: 10px;
+      input{
+        border: 0;
+        border-bottom: 1px solid $border-color;
+        border-radius: 0;
+        box-shadow: none;
+        cursor: pointer;
+      }
+      select{
+        border: 0;
+        border-bottom: 1px solid $border-color;
+        border-radius: 0;
+        box-shadow: none;
+        cursor: pointer;
       }
     }
     .filter {

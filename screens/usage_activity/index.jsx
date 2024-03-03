@@ -10,6 +10,7 @@ import InputType from "@/components/Input";
 
 export default function UsageActivity() {
   const [data, setData] = useState(undefined);
+  const [advanceSearch, setAdvanceSearch] = useState(false);
   const options = [10, 20, 50, 100];
   const onOptionChangeHandler = (event) => {
     setData(event.target.value);
@@ -48,9 +49,10 @@ export default function UsageActivity() {
                 </Col>
                 <Col xs="auto" sm="6">
                   <Button
-                    type="submit"
+                    // type="submit"
                     moduleClass="btn-type1"
                     className="ms-3"
+                    onClick={() => setAdvanceSearch(!advanceSearch)}
                   >
                     Advanced Search
                   </Button>
@@ -64,13 +66,73 @@ export default function UsageActivity() {
             </Button>
           </div>
         </div>
+        {advanceSearch && (
+          <div>
+            <div className="border-bottom mb-3">
+              <h5>Advanced Search</h5>
+            </div>
+            <Form className={`${Styles.advancedSearch} mb-3`}>
+              <Row className="g-3 mb-2">
+                <Col xs={12} lg={4} sm={6}>
+                  <Form.Group
+                    as={Row}
+                    controlId="formStartDate"
+                    className={`${Styles.formGrp} g-0`}
+                  >
+                    <Form.Label column sm="4" xs="3">
+                      Start Date :
+                    </Form.Label>
+                    <Col sm="8" xs="9">
+                      <Form.Control type="date" />
+                    </Col>
+                  </Form.Group>
+                </Col>
+                <Col xs={12} lg={4} sm={6}>
+                  <Form.Group
+                    as={Row}
+                    controlId="formEndDate"
+                    className={`${Styles.formGrp} g-0`}
+                  >
+                    <Form.Label column sm="4" xs="3">
+                      End Date :
+                    </Form.Label>
+                    <Col sm="8" xs="9">
+                      <Form.Control type="date" />
+                    </Col>
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row >
+                <Col xs={12} lg={4} sm={6}>
+                  <Form.Group
+                    as={Row}
+                    controlId="formEndDate"
+                    className={`${Styles.formGrp} g-0`}
+                  >
+                    <Form.Label column sm="4" xs="3">
+                      Filter Data :
+                    </Form.Label>
+                    <Col sm="8" xs="9">
+                      <Form.Select aria-label="Default select example">
+                        <option>Select Filter Data</option>
+                        <option value="all">All</option>
+                        <option value="like">Like</option>
+                        <option value="dislike">Dislike</option>
+                      </Form.Select>
+                    </Col>
+                  </Form.Group>
+                </Col>
+              </Row>
+            </Form>
+          </div>
+        )}
         <Row>
           <Col>
-          <TableUsageActivity
-            tableHeadData={TableHeadData2}
-            TableBodyData={tableBodyData2}
-            TableProperty={tabProperty}
-          />
+            <TableUsageActivity
+              tableHeadData={TableHeadData2}
+              TableBodyData={tableBodyData2}
+              TableProperty={tabProperty}
+            />
           </Col>
         </Row>
       </div>
@@ -79,18 +141,18 @@ export default function UsageActivity() {
 }
 
 let tabProperty = [
-  { width:'60px' },
-  { width:'70px' },
-  { width:'200px' },
-  { width:'300px' },
-  { width:'150px' },
-  { width:'150px' },
-  { width:'200px' },
-  { width:'200px' },
-  { width:'200px' },
-  { width:'200px' },
-  { width:'200px' },
-  { width:'90px',className:"text-center" },
+  { width: "60px" },
+  { width: "70px" },
+  { width: "200px" },
+  { width: "300px" },
+  { width: "150px" },
+  { width: "150px" },
+  { width: "200px" },
+  { width: "200px" },
+  { width: "200px" },
+  { width: "200px" },
+  { width: "200px" },
+  { width: "90px", className: "text-center" },
 ];
 
 let TableHeadData2 = [
@@ -163,7 +225,6 @@ let TableHeadData2 = [
     content: "Action",
   },
 ];
-
 
 let tableBodyData2 = [
   [

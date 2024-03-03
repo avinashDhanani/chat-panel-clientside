@@ -7,6 +7,7 @@ import Col from "react-bootstrap/Col";
 import Table, { TableDataRecover } from "@/components/table/table";
 import InputType from "@/components/Input";
 import { Container } from "react-bootstrap";
+import ModalView from "@/components/Modal/Modal";
 
 export default function DataRecovery() {
   const [data, setData] = useState(undefined);
@@ -15,6 +16,9 @@ export default function DataRecovery() {
     setData(event.target.value);
     console.log("User Selected Value - ", event.target.value);
   };
+  const [successModal, setSuccessModal] = useState(false);
+  const [recoveryConfirm, setRecoveryConfirm] = useState(false);
+
   return (
     <Container fluid>
       <div className={Styles.article}>
@@ -77,7 +81,7 @@ export default function DataRecovery() {
                     moduleClass="btn-type1"
                     className="ms-3"
                   >
-                    Submit
+                    Search
                   </Button>
                 </Col>
               </Row>
@@ -90,9 +94,57 @@ export default function DataRecovery() {
             tableHeadData={TableHeadData}
             TableBodyData={TableBodyData}
             TableProperty={tabProperty}
+            onClick={() => setRecoveryConfirm(true)}
           />
         </div>
       </div>
+
+      {/* Modal for create folder successfully*/}
+      <ModalView
+        className={Styles.modalSuccess}
+        show={recoveryConfirm}
+        onHide={() => setRecoveryConfirm(false)}
+        modalBody={
+          <div className="text-center">
+            <h2 className="title mb-3 fw-bold">Confirm data recovery</h2>
+            <h6 className="desc">Do you want to confirm data recovery?</h6>
+          </div>
+        }
+        modalFooter={
+          <>
+            <Button
+              variant="success"
+              className="px-4"
+              onClick={() => {
+                setSuccessModal(true), setRecoveryConfirm(false);
+              }}
+            >
+              Confirm
+            </Button>
+            <Button variant="danger" className="px-4" onClick={() => setRecoveryConfirm(false)}>
+              Cancel
+            </Button>
+          </>
+        }
+      />
+
+      {/* Modal for Confirm data recovery*/}
+      <ModalView
+        className={Styles.modalSuccess}
+        show={successModal}
+        onHide={() => setSuccessModal(false)}
+        modalBody={
+          <div className="text-center">
+            <h1 className="title mb-3 fw-bold">Done</h1>
+            <h6 className="desc">Data recovered succesfully.</h6>
+          </div>
+        }
+        modalFooter={
+          <Button variant="success" className="px-5" onClick={() => setSuccessModal(false)}>
+            Close
+          </Button>
+        }
+      />
     </Container>
   );
 }

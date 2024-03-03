@@ -3,34 +3,38 @@ import React, { useEffect, useState } from "react";
 import Styles from "./index.module.scss";
 import Button from "@/components/button";
 import ButtonType from "react-bootstrap/Button";
-import { HiOutlinePlusSm } from "react-icons/hi";
-import { MdOutlineDelete } from "react-icons/md";
-import { CgImage } from "react-icons/cg";
-import Input from "@/components/Input";
-import { FiSend } from "react-icons/fi";
+import Input, { ImageInput } from "@/components/Input";
 import HamburgerMenu from "@/components/hamburgur";
-import { IoChatboxEllipsesOutline } from "react-icons/io5";
-import { BsThreeDots } from "react-icons/bs";
 import Dropdown, {
   DropdownButton,
   DropdownItem,
   DropdownMenu,
 } from "@/components/dropdowon";
-import { RiRobot2Fill } from "react-icons/ri";
-import { FaUserCircle } from "react-icons/fa";
 import useAppcontext from "@/context";
-import { MdOutlineContentCopy } from "react-icons/md";
-import Navbar from "react-bootstrap/Navbar";
-import { BiLike, BiDislike } from "react-icons/bi";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import { TiArrowForwardOutline } from "react-icons/ti";
-import { BiCommentDetail } from "react-icons/bi";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Navbar from "react-bootstrap/Navbar";
+import { BsThreeDots } from "react-icons/bs";
+import { IoChatboxEllipsesOutline, IoTelescope } from "react-icons/io5";
+import { HiOutlinePlusSm, HiReply } from "react-icons/hi";
+import { FiSend } from "react-icons/fi";
+import { RiRobot2Fill } from "react-icons/ri";
+import {
+  MdOutlineContentCopy,
+  MdRefresh,
+  MdOutlineDelete,
+} from "react-icons/md";
+import { BiLike, BiDislike, BiCommentDetail } from "react-icons/bi";
+import { IoLogoWhatsapp, IoIosArrowDown } from "react-icons/io";
 import { TfiEmail } from "react-icons/tfi";
-import { FaFacebookSquare } from "react-icons/fa";
-import { IoLogoWhatsapp } from "react-icons/io";
+import { FaFacebookSquare, FaUserCircle } from "react-icons/fa";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 import Link from "next/link";
+import CustomRadioBox from "@/components/checkbox";
+import Forward from "@/components/chat-component/forward";
+import Like from "@/components/chat-component/like";
+import Dislike from "@/components/chat-component/dislike";
+import Comment from "@/components/chat-component/comment";
 
 export default function Chat() {
   const [showHistory, setShowHistory] = useState(true);
@@ -41,7 +45,6 @@ export default function Chat() {
       setShowHistory(false);
     }
   }, [value[0].width]);
-
 
   return (
     <div
@@ -59,75 +62,120 @@ export default function Chat() {
           setShow={() => setShowHistory(!showHistory)}
           className={Styles.menu}
         />
-        <div className={Styles.header} title="Start Chatting with a chatbot">Start Chatting with a chatbot</div>
+        <div className={Styles.header} title="Start Chatting with a chatbot">
+          Start Chatting with a chatbot
+        </div>
         <div className={Styles.body}>
-          <div className={Styles.user}>
-            <div className={Styles.msgBox}>
-              <div className="d-flex flex-column align-items-end">
-                <span className={Styles.userName}>You</span>
-                <span className={Styles.userMsg}>Hi</span>
-              </div>
-              <span className={Styles.profilePic}>
-                <FaUserCircle size={20} color="#fff" />
-              </span>
-            </div>
-          </div>
-          <div className={Styles.chatbot}>
-            <div className={Styles.msgBox}>
-              <span className={Styles.profilePic}>
-                <RiRobot2Fill size={20} color="#fff" />
-              </span>
-              <div className="d-flex flex-column align-items-start">
-                <span className={Styles.botName}>Chatbot</span>
-                <span className={Styles.botMsg}>
-                  Hey! How's it going? What's on your mind today?
-                </span>
-              </div>
-              <div className={Styles.repliesOuter}>
-                <div className={Styles.replies}>
-                  <Button variant="link" className="p-0">
-                    <MdOutlineContentCopy size={16} color="#000" />
-                  </Button>
-                  <OverlayTrigger
-                  rootClose
-                    trigger="click"
-                    placement="bottom"
-                    overlay={like}
-                  >
-                    <ButtonType variant="link" className="p-0">
-                      <BiLike color="#000" size={16} />
-                    </ButtonType>
-                  </OverlayTrigger>
-                  <OverlayTrigger
-                  rootClose
-                    trigger="click"
-                    placement="bottom"
-                    overlay={dislike}
-                  >
-                    <ButtonType variant="link" className="p-0">
-                      <BiDislike color="#000" size={16} />
-                    </ButtonType>
-                  </OverlayTrigger>
-                  <OverlayTrigger
-                  rootClose
-                    trigger="click"
-                    placement="right"
-                    overlay={forward}
-                  >
-                    <ButtonType variant="link" className="p-0">
-                      <TiArrowForwardOutline color="#000" size={19} />
-                    </ButtonType>
-                  </OverlayTrigger>
-                  <BiCommentDetail color="#000" size={16} />
+          {["", ""].map((item) => {
+            return (
+              <div key={item.id}>
+                <div className={Styles.user}>
+                  <div className={Styles.msgBox}>
+                    <div className="d-flex flex-column align-items-end">
+                      <span className={Styles.userName}>You</span>
+                      <span className={Styles.userMsg}>Hi</span>
+                    </div>
+                    <span className={Styles.profilePic}>
+                      <FaUserCircle size={20} color="#6f7078" />
+                    </span>
+                  </div>
+                </div>
+                <div className={Styles.chatbot}>
+                  <div className={Styles.msgBox}>
+                    <span className={Styles.profilePic}>
+                      <RiRobot2Fill size={20} color="#6f7078" />
+                    </span>
+                    <div className="d-flex flex-column align-items-start">
+                      <span className={Styles.botName}>Chatbot</span>
+                      <span className={Styles.botMsg}>
+                        Hey! How's it going? What's on your mind today? Lorem
+                        ipsum dolor sit amet, consectetur adipiscing elit, sed
+                        do eiusmod tempor incididunt ut labore et dolore magna
+                        aliqua. Mattis pellentesque id nibh tortor id aliquet
+                        lectus proin. Feugiat vivamus at augue eget arcu. Sem
+                        viverra aliquet eget sit amet tellus cras adipiscing.
+                        Nunc congue nisi vitae suscipit tellus mauris. Fames ac
+                        turpis egestas maecenas pharetra convallis. Ipsum nunc
+                        aliquet bibendum enim facilisis gravida
+                      </span>
+                      <span className={Styles.botMsg}>
+                        Feugiat nisl pretium fusce id velit ut tortor. Vitae
+                        aliquet nec ullamcorper sit amet risus nullam eget
+                        felis. Volutpat diam ut venenatis tellus in metus
+                        vulputate. Luctus venenatis lectus magna fringilla urna
+                        porttitor rhoncus dolor. Risus viverra adipiscing at in
+                        tellus integer feugiat scelerisque.
+                      </span>
+                    </div>
+
+                    <div className={Styles.replyMsg}>
+                      <Button moduleClass="replyBtn">
+                        Reply To Message{""}
+                        <HiReply size={17} className="ms-1" />
+                      </Button>
+                    </div>
+
+                    <div className={Styles.draftBox}>
+                      <div className={Styles.draftInner}>
+                        <span className="labelText">View Other Draft</span>
+                        <Dropdown align="end" className={Styles.draftDrop}>
+                          <DropdownButton
+                            className={Styles.dropBtn}
+                            variant="link"
+                          >
+                            <IoIosArrowDown size={20} color="#000" />
+                          </DropdownButton>
+                          <DropdownMenu className={Styles.draftMenu}>
+                            <div className={Styles.menuContent}>
+                              <CustomRadioBox
+                                id="draft1"
+                                name="draft"
+                                badge="Draft 1"
+                                content="Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups."
+                              />
+                              <CustomRadioBox
+                                id="draft2"
+                                name="draft"
+                                badge="Draft 2"
+                                content="Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups."
+                              />
+                              <CustomRadioBox
+                                id="draft3"
+                                name="draft"
+                                badge="Draft 3"
+                                content="Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups."
+                              />
+                              <Button moduleClass="draftBtn" variant="link">
+                                <MdRefresh color="#222D32" />
+                              </Button>
+                            </div>
+                          </DropdownMenu>
+                        </Dropdown>
+                      </div>
+                    </div>
+
+                    <div className={Styles.repliesOuter}>
+                      <div className={Styles.replies}>
+                        <Button variant="link" className="p-0">
+                          <MdOutlineContentCopy size={16} color="#000" />
+                        </Button>
+                        <Like/>
+                        <Dislike/>
+                        <Forward />
+                        <Comment />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-            {/* <StartChat/> */}
+            );
+          })}
+
+          {/* <StartChat/> */}
         </div>
 
         <div className={Styles.footer}>
-          <CgImage size={20} color="#fff" />
+          <ImageInput />
           <div className="position-relative">
             <Input
               type="text"
@@ -150,6 +198,16 @@ export default function Chat() {
 function ChatList(props) {
   const { show, setShow } = props;
   const value = useAppcontext();
+  const [chatLIst, setChatLIst] = useState([
+    {
+      id: 1,
+      listItem: [{ id: 1 }],
+    },
+  ]);
+
+  function handelDelete(id, itemID) {
+    // setChatLIst(chatLIst[id].listItem.filter((e)=>e.id != itemID));
+  }
   return (
     <Navbar expand="xl" className="p-0">
       <Navbar.Offcanvas
@@ -170,7 +228,7 @@ function ChatList(props) {
                   Start a new chat
                 </Button>
                 <div className="d-flex justify-content-between align-items-center">
-                  <h6 className="align-self-end text-white">Chat History</h6>
+                  <h6 className="align-self-end text-black">Chat History</h6>
                   <Button
                     className="mb-2 "
                     moduleClass="whiteBtn"
@@ -182,26 +240,46 @@ function ChatList(props) {
                 </div>
               </div>
               <div className={Styles.chatList}>
-                <p className={Styles.fromStartChat}>7 days ago</p>
-                <div className={Styles.chatListItem}>
-                  <span className="d-flex align-items-center">
-                    <IoChatboxEllipsesOutline size={14} />
-                    <span className={Styles.date}>15/02/2024</span>&nbsp;:&nbsp;
-                    <span className={Styles.firstmsg}>
-                      Phra Aphai Mani djvlkj jdkahakjs lghjka hkgjhgjkahjkhkajgh
-                      ...
-                    </span>
-                  </span>
-                  <Dropdown className={Styles.setting} align="end">
-                    <DropdownButton variant="link">
-                      <BsThreeDots size={15} />
-                    </DropdownButton>
-                    <DropdownMenu>
-                      <DropdownItem>Delete</DropdownItem>
-                    </DropdownMenu>
-                  </Dropdown>
-                </div>
-                <div className={Styles.chatListItem}>
+                {chatLIst.map((item) => {
+                  return (
+                    <div key={item.id} className={Styles.chatListInnerBox}>
+                      <p className={Styles.fromStartChat}>7 days ago</p>
+                      {item.listItem.map((itemList) => {
+                        return (
+                          <div key={itemList} className={Styles.chatListItem}>
+                            <span className="d-flex align-items-center">
+                              <IoChatboxEllipsesOutline
+                                color="#000"
+                                size={14}
+                              />
+                              <span className={Styles.date}>15/02/2024</span>
+                              &nbsp;:&nbsp;
+                              <span className={Styles.firstmsg}>
+                                Phra Aphai Mani djvlkj jdkahakjs lghjka
+                                hkgjhgjkahjkhkajgh ...
+                              </span>
+                            </span>
+                            <Dropdown className={Styles.setting} align="end">
+                              <DropdownButton variant="link">
+                                <BsThreeDots size={15} />
+                              </DropdownButton>
+                              <DropdownMenu>
+                                <DropdownItem
+                                  onClick={() =>
+                                    handelDelete(item.id, itemList.id)
+                                  }
+                                >
+                                  Delete
+                                </DropdownItem>
+                              </DropdownMenu>
+                            </Dropdown>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  );
+                })}
+                {/* <div className={Styles.chatListItem}>
                   <span className="d-flex align-items-center">
                     <IoChatboxEllipsesOutline size={14} />
                     <span className={Styles.date}>16/02/2024</span>&nbsp;:&nbsp;
@@ -217,7 +295,7 @@ function ChatList(props) {
                       <DropdownItem>Delete</DropdownItem>
                     </DropdownMenu>
                   </Dropdown>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -245,26 +323,38 @@ const dislike = (
   </Popover>
 );
 
-const forward = (
+const comment = (
   <Popover id="popover-basic" className={Styles.forward}>
     <Popover.Body>
-      <Link href="#"><TfiEmail color="#000" size={16}/>E-mail</Link>
-      <Link href="#"><FaFacebookSquare color="#1877F2" size={16}/>Facebook</Link>
-      <Link href="#"><IoLogoWhatsapp color="#25D366" size={16}/>Whatsapp</Link>
+      <Link href="#">
+        <TfiEmail color="#000" size={16} />
+        E-mail
+      </Link>
+      <Link href="#">
+        <FaFacebookSquare color="#1877F2" size={16} />
+        Facebook
+      </Link>
+      <Link href="#">
+        <IoLogoWhatsapp color="#25D366" size={16} />
+        Whatsapp
+      </Link>
     </Popover.Body>
   </Popover>
 );
 
-
-function StartChat(props){
-  return(
+function StartChat(props) {
+  return (
     <div className={Styles.startChat}>
       <h1 className="font-weight-bold">Hello My Name is KRU ai</h1>
       <h6>I am ready to take you on a journey into the world of knowledge</h6>
-      <p className="fs-xxs">What do you want to learn?I'm ready to answer all your questions.</p>
-      <Button moduleClass="chatmsgBtn">Please help explain the Story. Preparation of lesson plan.</Button>
+      <p className="fs-xxs">
+        What do you want to learn?I'm ready to answer all your questions.
+      </p>
+      <Button moduleClass="chatmsgBtn">
+        Please help explain the Story. Preparation of lesson plan.
+      </Button>
       <Button moduleClass="chatmsgBtn">Write some sample documents</Button>
       <Button moduleClass="chatmsgBtn">Help analyze the exam</Button>
     </div>
-  )
+  );
 }

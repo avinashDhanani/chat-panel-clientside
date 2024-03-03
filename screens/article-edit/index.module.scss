@@ -1,0 +1,37 @@
+@import '../../styles/config.scss';
+
+.articleEdit {
+  padding: 40px 50px;
+
+  @media (max-width:768px) {
+    padding: 30px 15px;
+  }
+
+  .heading{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: space-between;
+
+    @media (max-width:768px) {
+     flex-direction: column;
+     gap: 15px;
+    }
+    :global(.rightBtn){
+        button{
+            min-width: 140px;
+        }
+    }
+  }
+
+  .mainBody{
+    .dropZone{
+        max-width: 500px;
+    }
+  }
+
+  .footer{
+    padding: 15px 0 0;
+    border-top: 1px solid $border-color;
+  }
+}

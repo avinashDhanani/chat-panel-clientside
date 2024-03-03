@@ -1,0 +1,21 @@
+@import '../../styles/config.scss';
+
+.review {
+    padding: 30px;
+    height: 100%;
+  
+    @media (max-width:768px) {
+      padding: 30px 15px;
+    }
+
+    :global(.footer){
+        position: absolute;
+        width: calc(100% - 60px);
+        bottom: 0;
+        background-color: $white;
+        z-index: 1;
+        @media (max-width:768px) {
+          width: calc(100% - 30px);
+        }
+    }
+}

@@ -6,7 +6,8 @@
   transition: all 0.5s ease-in-out;
   width: 65px;
   overflow: hidden;
-  background: $primary;
+  // background: $primary;
+  background: $navbg;
 
 
   &.showSidebar {
@@ -37,7 +38,7 @@
         .navItem {
           padding: 15px 0;
           border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-          color: rgba(255, 255, 255, 0.6);
+          color: rgba(0, 0, 0, 0.6);
 
           &:hover {
             .navLink {

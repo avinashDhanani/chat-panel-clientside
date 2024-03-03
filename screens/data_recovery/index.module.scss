@@ -6,9 +6,7 @@
   @media (max-width:768px) {
     padding: 30px 15px;
   }
-  @media (max-width:476px) {
-    padding: 30px 5px;
-  }
+
   .header {
     width: 100%;
     text-align: center;
@@ -87,5 +85,16 @@
     @media (max-width:576px) {
       flex: 0 0 100%;      
     }
+  }
+}
+
+
+.modalSuccess{
+  :global(.modal-header){
+    border: 0;
+  }
+  :global(.modal-footer){
+    border: 0;
+    justify-content: center;
   }
 }

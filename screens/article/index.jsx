@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import Styles from "./index.module.scss";
 import Button from "@/components/button";
 import Form from "react-bootstrap/Form";
@@ -9,6 +9,7 @@ import { Container } from "react-bootstrap";
 import InputType from "@/components/Input";
 import { DropdownForArticle } from "@/components/dropdowon";
 import ModalView from "@/components/Modal/Modal";
+import StyledDropzone from "@/components/dropzone";
 
 export default function Article() {
   const [data, setData] = useState(undefined);
@@ -18,6 +19,8 @@ export default function Article() {
     console.log("User Selected Value - ", event.target.value);
   };
   const [modalShow, setModalShow] = useState({ status: false, type: "" });
+  const [successModal, setSuccessModal] = useState(false);
+  const [exportModal, setExportModal] = useState(false);
   const manage_dropdown_handler = (item) => {
     switch (item) {
       case "create_folder":
@@ -25,6 +28,9 @@ export default function Article() {
         break;
       case "add_an_article":
         setModalShow({ status: true, type: "add_an_article" });
+        break;
+      case "import_excel_file":
+        setExportModal(true);
         break;
     }
   };
@@ -49,7 +55,7 @@ export default function Article() {
           </select>
           <span>entries</span>
         </div>
-        <div className="d-flex mb-4 justify-content-between align-items-center">
+        <div className={Styles.filterWrapper}>
           <div className={Styles.filter}>
             <Form inline>
               <Row className="g-0">
@@ -61,13 +67,13 @@ export default function Article() {
                     className="mr-sm-2"
                   />
                 </Col>
-                <Col>
+                <Col xs="auto" sm="6">
                   <Button
                     type="submit"
                     moduleClass="btn-type1"
                     className="ms-3"
                   >
-                    Submit
+                    Search
                   </Button>
                 </Col>
               </Row>
@@ -97,9 +103,11 @@ export default function Article() {
       {/* Modal for create folder */}
       <ModalView
         show={modalShow.status && modalShow.type == "create_folder"}
+        onHide={modal_close}
+        size="lg"
         modalHead="Create folder"
         modalBody={
-          <Row>
+          <Row className="py-4">
             <Form.Label column="sm" lg={2} style={{ width: "116px" }}>
               Folder Name :
             </Form.Label>
@@ -110,22 +118,94 @@ export default function Article() {
         }
         modalFooter={
           <>
-            <Button variant="success" onClick={modal_close}>
+            <Button
+              variant="success"
+              className="px-3"
+              onClick={() => {
+                modal_close(), setSuccessModal(true);
+              }}
+            >
               confirm
             </Button>
-            <Button variant="danger" onClick={modal_close}>
+            <Button className="px-4" variant="danger" onClick={modal_close}>
               cancel
             </Button>
           </>
         }
       />
+      {/* Modal for create folder successfully*/}
+      <ModalView
+        className={Styles.modalSuccess}
+        show={successModal}
+        onHide={() => setSuccessModal(false)}
+        modalBody={
+          <div className="text-center">
+            <h1>Done</h1>
+            <h5>Folder created succesfully.</h5>
+          </div>
+        }
+        modalFooter={
+          <div className="text-center">
+            <Button
+              className="px-5"
+              variant="success"
+              onClick={() => setSuccessModal(false)}
+            >
+              Close
+            </Button>
+          </div>
+        }
+      />
+
+      {/* Modal for Export file*/}
+      <ModalView
+        modalHead="Excel/Import Excel file"
+        className={Styles.ExportModal}
+        show={exportModal}
+        size="lg"
+        onHide={() => setExportModal(false)}
+        modalBody={
+          <Fragment>
+            <Row className="py-3">
+              <Form.Label column="sm" lg={2} style={{ width: "116px" }}>
+                Topic :
+              </Form.Label>
+              <Col>
+                <Form.Control size="sm" type="text" placeholder="Folder Name" />
+              </Col>
+            </Row>
+            <Form.Label>Select file :</Form.Label>
+            <StyledDropzone />
+          </Fragment>
+        }
+        modalFooter={
+          <div className="text-center">
+            <Button
+              className="px-4 me-2"
+              variant="success"
+              onClick={() => setExportModal(false)}
+            >
+              confirm
+            </Button>
+            <Button
+              className="px-4"
+              variant="danger"
+              onClick={() => setExportModal(false)}
+            >
+              cancel
+            </Button>
+          </div>
+        }
+      />
 
       {/* Edit folder name */}
       <ModalView
+        size="lg"
+        onHide={modal_close}
         show={modalShow.status && modalShow.type == "add_an_article"}
         modalHead="Edit folder name"
         modalBody={
-          <Row>
+          <Row className="py-3">
             <Form.Label column="sm" lg={2} style={{ width: "116px" }}>
               Folder Name :
             </Form.Label>
@@ -136,10 +216,10 @@ export default function Article() {
         }
         modalFooter={
           <>
-            <Button variant="success" onClick={modal_close}>
+            <Button className="px-4" variant="success" onClick={modal_close}>
               confirm
             </Button>
-            <Button variant="danger" onClick={modal_close}>
+            <Button className="px-4" variant="danger" onClick={modal_close}>
               cancel
             </Button>
           </>
@@ -263,7 +343,7 @@ let defaultManageDropdownValue = [
   },
   {
     id: 4,
-    name: "Add an article",
-    value: "add_an_article",
+    name: "Export Excel",
+    value: "export_excel",
   },
 ];

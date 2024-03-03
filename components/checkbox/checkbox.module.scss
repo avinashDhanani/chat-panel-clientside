@@ -1,0 +1,93 @@
+@import "../../styles/config.scss";
+
+.customRadio {
+  .formLabel {
+    border: 2px solid $border-dark;
+    position: relative;
+    background-color: $white;
+    width: 130px;
+    max-height: 75px;
+    overflow: hidden;
+    border-radius: 10px;
+    padding: 0 4px;
+    margin: 0;
+    @media (max-width:768px) {
+      width: auto;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      font-size: 8px;
+      position: relative;
+      z-index: 2;
+      color: $black;
+      top: -4px;
+      font-weight: $f_medium;
+    }
+    .text {
+      margin-top: -3px;
+      font-size: 9px;
+      font-weight: $f_normal;
+      display: inline-block;
+      line-height: 1.4;
+      @media (max-width:768px) {
+        display: none;
+      }
+      
+    }
+  }
+
+  .checkInput {
+    opacity: 0;
+    position: absolute;
+
+    &:checked {
+      + .formLabel {
+        border-color: #3e68f2;
+        // background-color: rgba($color: $primary, $alpha: 0.2);
+        .badge {
+          color: $white;
+          background-color: $primary !important;
+        }
+
+        .overLay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba($color: #3e68f2, $alpha: 0.1);
+          z-index: 1;
+          border-radius: 10px;
+        }
+      }
+    }
+  }
+}
+
+.customCheck {
+  .formLabel {
+    border: 1px solid #9c9898;
+    background-color: $white;
+    overflow: hidden;
+    border-radius: 4px;
+    padding: 3px 6px;
+    margin: 0;
+    white-space: nowrap;
+    font-size: 11px;
+  }
+  .checkInput {
+    opacity: 0;
+    position: absolute;
+
+    &:checked {
+      + .formLabel {
+        border-color: $orange;
+        background-color: $orange;
+        color: $white;
+        // background-color: rgba($color: $primary, $alpha: 0.2);
+      }
+    }
+  }
+}

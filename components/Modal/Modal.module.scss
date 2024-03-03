@@ -1,0 +1,15 @@
+@import "../../styles/config.scss";
+
+.modalFooter {
+  justify-content: center;
+}
+
+.SuccessModal {
+  :global(.modal-header) {
+    border: 0;
+  }
+  :global(.modal-footer) {
+    border: 0;
+    justify-content: center;
+  }
+}
