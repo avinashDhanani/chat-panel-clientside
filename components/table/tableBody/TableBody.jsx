@@ -9,9 +9,12 @@ import { useRouter } from 'next/navigation';
 
 export default function TableBody(props) {
   const router = useRouter();  
+  
   return (
     <tbody className={Style.articleTableBody}>
-      {props.data.map((item) => {
+      { props?.data != "" &&
+      props.data.map((item, index) => {
+
         return (
           <tr className={Style.atb_row}>
             <td>
@@ -22,13 +25,14 @@ export default function TableBody(props) {
             })}
             <td>
               <div className="d-flex align-items-center justify-content-center gap-3">
-                <Button title="Edit" moduleClass="tableIconBtn">
+                <Button title="Edit" moduleClass="tableIconBtn" onClick={() => { props?.handleEdit(props?.data[index][0].content)}}>
                   <FiEdit2 size={20} />
                 </Button>
                 <Button
                   variant="danger"
                   moduleClass="tableIconBtn"
                   title="Delete"
+                  onClick={() => { props?.setModalShow({ status: true, type: "delete_item", id:props?.data[index][0].content })}}
                 >
                   <RiDeleteBinLine size={20} />
                 </Button>

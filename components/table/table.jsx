@@ -12,7 +12,7 @@ export default function table(props) {
   return (
     <Table responsive className={Styles.tableType1}>
       <TableHead data={tableHeadData} TableProperty={TableProperty} />
-      <TableBody data={TableBodyData} />
+      <TableBody data={TableBodyData} handleEdit={props?.handleEdit} setModalShow={props?.setModalShow}/>
     </Table>
   );
 }
