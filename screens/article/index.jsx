@@ -122,7 +122,7 @@ export default function Article() {
       })
     let id = data[0].id;
     await axios
-        .delete(`http://49.0.192.107:5000/api/train/article/${id}`, {
+        .delete(`https://49.0.192.107:5000/api/train/article/${id}`, {
          title: fromData.title,
          description: fromData.description,
          id: fromData.id
