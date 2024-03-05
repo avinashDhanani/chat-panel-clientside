@@ -97,7 +97,7 @@ export default function Article() {
   }
   const getArticleData = async () => {
     await axios
-      .get('http://49.0.192.107:5000/api/train/article', {
+      .get('https://49.0.192.107:5000/api/train/article', {
         params: {
           Key: "",
           page: 0,
@@ -137,7 +137,7 @@ export default function Article() {
   const handleSubmit = async() => {
     if(edit){
       await axios
-        .put('http://49.0.192.107:5000/api/train/article', {
+        .put('https://49.0.192.107:5000/api/train/article', {
          title: fromData.title,
          description: fromData.description,
          id: fromData.id
@@ -152,7 +152,7 @@ export default function Article() {
         })
     }else {
       await axios
-        .post('http://49.0.192.107:5000/api/train/article', {
+        .post('https://49.0.192.107:5000/api/train/article', {
          title: fromData.title,
          description: fromData.description
         })
