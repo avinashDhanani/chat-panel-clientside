@@ -25,17 +25,19 @@ const LoginForm = () => {
   const on_login_form_handler = async() => {
     if(fromData.username != "" && fromData.password != "") {
       await axios
-        .post('https://49.0.192.107:5000/api/signin', {
-         email: fromData.username,
-         password: fromData.password
+        .post("http://49.0.192.107:5000/api/signin", {
+          email: fromData.username,
+          password: fromData.password,
         })
         .then((response) => {
-          
-          if(response.data.access_token != "" && response.data.access_token != undefined) {
+          if (
+            response.data.access_token != "" &&
+            response.data.access_token != undefined
+          ) {
             accessToken = response.data.access_token;
             router.push("/chat");
           }
-        })
+        });
     }
 
   }
