@@ -8,6 +8,8 @@ export default function InputType(props) {
     name,
     placeholder,
     moduleClass,
+    value,
+    onChange,
     className,
     ...rest
   } = props;
@@ -16,7 +18,9 @@ export default function InputType(props) {
       type={type}
       id="username"
       name={name}
+      value={value}
       placeholder={placeholder}
+      onChange={onChange}
       className={`${Styles.commonInput} ${Styles[moduleClass]} ${className}`}
       {...rest}
     />

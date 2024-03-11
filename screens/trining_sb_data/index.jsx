@@ -19,7 +19,7 @@ export default function TriningSbData() {
     <Container fluid>
       <div className={Styles.article}>
         <div className={Styles.header}>
-          <h2 className="mb-4">Trining SB Data</h2>
+          <h2 className="mb-4">Training SB Data</h2>
         </div>
 
         <div className={`${Styles.entriesLimit} mb-3`}>

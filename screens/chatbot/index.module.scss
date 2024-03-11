@@ -338,12 +338,12 @@
       padding: 10px 10px;
       background-color: $white;
       height: 100%;
-      overflow: hidden;
+      overflow: scroll;
       border-radius: 12px;
       box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
       .chatListInnerBox {
-        height: 100%;
+        // height: 100%;  
         overflow-y: auto;
         overflow-x: hidden;
         position: relative;

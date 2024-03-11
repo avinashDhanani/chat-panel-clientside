@@ -2,7 +2,7 @@ import { BiSolidBookBookmark } from "react-icons/bi";
 import { MdOutlineMarkUnreadChatAlt } from "react-icons/md";
 import { LuActivitySquare } from "react-icons/lu";
 import { FaRobot } from "react-icons/fa6";
-import { School,Delete } from "@/components/svg";
+import { School, Delete } from "@/components/svg";
 
 const routes = [
   {
@@ -41,6 +41,12 @@ const routes = [
     path: "/data_recovery",
     icon: <Delete />,
   },
+  {
+    id: 6,
+    link: "Logout",
+    path: "/login",
+    icon: <span></span>,
+  },
 ];
 
-export { routes };
+export { routes };  
